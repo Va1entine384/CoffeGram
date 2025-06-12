@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route} from "react-router-dom";
 import Login from "./Components/Login";
-import Feed from "./Components/feed.js";
+import Feed from "./Components/Feed.js";
 
 function App () {
   return (
