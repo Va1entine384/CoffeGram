@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useCallback } from "react";
 import "../css/Feed.css";
+import HeaderLogo from "../Images/HeaderLogo.png";
+
 
 import usernames from "../Data/usernames.json";
 import captions from "../Data/captions.json";
@@ -67,7 +69,7 @@ const Feed = () => {
     return (
         <div className="feedContainer">
             <header className="header">
-                <h2>CoffeGram</h2>
+                <img src={HeaderLogo} alt="HeaderLogo" className="HeaderLogo"/>
                 <button onClick={handleLogout} className="logoutBtn">
                     Выйти
                 </button>
@@ -76,9 +78,11 @@ const Feed = () => {
             <div className="postsFlex">
                 {posts.map((post) => (
                     <div key={post.id} className="postCard">
-                        <h3 className="username"><strong>{post.user}</strong></h3>
+                        <p className="username">
+                            <strong>{post.user}</strong>
+                        </p>
                         <img src={post.imageUrl} alt={post.caption} className="postImage" />
-                        <p>
+                        <p className="caption">
                             <strong>{post.user}</strong>: {post.caption}
                         </p>
                     </div>
