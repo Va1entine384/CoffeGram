@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useCallback } from "react";
+import { motion } from "motion/react";
+import { formatDistanceToNow } from "date-fns";
+import ru from "date-fns/locale/ru";
 import "../css/Feed.css";
 import HeaderLogo from "../Images/HeaderLogo.png";
+import { VscDiffRenamed } from "react-icons/vsc";
 
 
 import usernames from "../Data/usernames.json";
@@ -26,14 +30,25 @@ const Feed = () => {
     const getRandomItem = (array) => 
         array[Math.floor(Math.random() * array.length)];
 
+    const randomDate = () => {
+        const date = new Date();
+        date.setHours(date.getHours() - Math.floor(Math.random() * 72 ))
+        return date;
+    }
+
+    const formatTimeAgo = (date) => {
+        return formatDistanceToNow(new Date(date), {addSuffix: true, locale: ru});
+    }
+
     const generateImageUrl = useCallback(() => getRandomItem(images), []);
 
     const generatePosts = useCallback((count) => {
         return Array.from({ length: count }, () => ({
             id: uuidv4(),
-        user: getRandomItem(usernames),
-        caption: getRandomItem(captions),
-        imageUrl: generateImageUrl(),
+            user: getRandomItem(usernames),
+            caption: getRandomItem(captions),
+            imageUrl: generateImageUrl(),
+            createdAt: randomDate(),
         }));
     }, [generateImageUrl]);
 
@@ -70,14 +85,19 @@ const Feed = () => {
         <div className="feedContainer">
             <header className="header">
                 <img src={HeaderLogo} alt="HeaderLogo" className="HeaderLogo"/>
-                <button onClick={handleLogout} className="logoutBtn">
-                    Выйти
-                </button>
+                <div>
+                    <VscDiffRenamed className="exitIcon" alt="Выйти" onClick={handleLogout}/>
+                </div>
             </header>
 
             <div className="postsFlex">
                 {posts.map((post) => (
-                    <div key={post.id} className="postCard">
+                    <motion.div key={post.id} 
+                        className="postCard"
+                        whileHover={{
+                            scale: 1.1,
+                        }}
+                        >
                         <p className="username">
                             <strong>{post.user}</strong>
                         </p>
@@ -85,7 +105,8 @@ const Feed = () => {
                         <p className="caption">
                             <strong>{post.user}</strong>: {post.caption}
                         </p>
-                    </div>
+                        <p className="postDate">{formatTimeAgo(post.createdAt)}</p>
+                    </motion.div>
                 ))}
             </div>
 

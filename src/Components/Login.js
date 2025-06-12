@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { BiCoffeeTogo } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
 import { VscKey } from "react-icons/vsc";
-// import { motion } from "motion/react-client"
 import "../css/Login.css";
 
 const Login = () => {

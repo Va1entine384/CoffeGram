@@ -1,3 +1,7 @@
+html {
+  scroll-snap-type: y mandatory;
+}
+
 .feed-container {
   display: flex;
   flex-direction: column;
@@ -24,9 +28,9 @@
   margin-left: 20px;
 }
 
-.logoutBtn {
+.exitIcon {
   padding: 8px 12px;
-  margin-right: 10px;
+  margin-right: 20px;
   background-color: #8B6B4D; 
   text-color: black;
   border: none;
@@ -38,11 +42,11 @@
   cursor: pointer;
 }
 
-.logoutBtn:hover {
+.exitIcon:hover {
     background-color:rgb(94, 64, 38); 
 }
 
-.logoutBtn:active {
+.exitIcon:active {
     background-color: #5A3D2B;
 }
 
@@ -79,4 +83,8 @@
 
 .caption{
   margin-top: 0px;
+}
+
+.postDate {
+  margin-bottom: 0;
 }
