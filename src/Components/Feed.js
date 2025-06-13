@@ -97,6 +97,9 @@ const Feed = () => {
                         whileHover={{
                             scale: 1.1,
                         }}
+                        initial={{ y: 100, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.6 }}
                         >
                         <p className="username">
                             <strong>{post.user}</strong>
