@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CryptoJS } from "crypto-js";
+import CryptoJS from "crypto-js";
 import { BiCoffeeTogo } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
 import { VscKey } from "react-icons/vsc";
