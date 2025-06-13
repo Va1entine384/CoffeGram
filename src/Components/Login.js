@@ -5,6 +5,7 @@ import { BiCoffeeTogo } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
 import { VscKey } from "react-icons/vsc";
 import { BiGroup } from "react-icons/bi";
+import { BiSolidLogOut } from "react-icons/bi";//Заменить на неё в Feed.js кнопку для выхода на авторизацию
 import "../css/Login.css";
 
 const Login = () => {

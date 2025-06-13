@@ -37,6 +37,7 @@ body {
 .real-users {
     font-size:20px;
     color: #fff;
+    cursor: pointer;
 }
 
 .app-name {
@@ -144,6 +145,7 @@ body {
     display: flex;
     align-items: center;
     color: #fff;
+    cursor: pointer;
 }
 
 .login-button {
