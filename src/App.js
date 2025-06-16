@@ -1,5 +1,5 @@
 import { Routes, Route} from "react-router-dom";
-import Login from "./Components/Login";
+import Login from "./Components/Login.jsx";
 
 function App () {
   return (
