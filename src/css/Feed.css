@@ -102,6 +102,21 @@ html {
   margin-top: 10px;
 }
 
+.comments-list {
+  overflow: auto;
+  max-width: 500px;
+}
+
+.comment-input {
+  background-color: #8B6B4D;
+  border: 2px solid rgb(103, 77, 54);
+}
+
+.comment-input::placeholder {
+  color: black;
+  opacity: 0.8;
+}
+
 .caption{
   margin-top: 0px;
 }

@@ -25,6 +25,8 @@ const Feed = () => {
     const [hasMore, setHasMore] = useState(true);
     const [showComments, setShowComments] = useState({});
     const [likedPosts, setLikedPosts] = useState([]);
+    const [commentTexts, setCommentTexts] = useState({});
+    const currentUser = localStorage.getItem("user");
 
     const getRandomItem = (array) => array[Math.floor(Math.random() * array.length)];
     const generateImageUrl = useCallback(() => getRandomItem(images), []);
@@ -52,8 +54,18 @@ const Feed = () => {
     };
 
     const handleAddComment = (postId) => {
-        addCommentHandler(postId, setPosts, getRandomItem);
+        const commentText = commentTexts[postId] || '';
+        if(!commentText.trim()) return;
+
+        addCommentHandler(postId, setPosts, currentUser, commentText);
+        setCommentTexts(prev => ({...prev, [postId]: ''}));
+
+        setShowComments(prev => ({...prev, [postId]: true}));
     };
+
+    const handleCommentChange = (postId, text) => {
+        setCommentTexts(prev => ({...prev, [postId]: String(text)}));
+    }
 
     const toggleComments = (postId) => {
         setShowComments((prev) => ({
@@ -111,13 +123,30 @@ const Feed = () => {
                                 {showComments[post.id] ? 'Скрыть комментарии' : 'Показать комментарии'} ({post.commentCount})
                             </button>
                             {showComments[post.id] && (
-                                <ul>
-                                    {post.comments.map((comment, index) => (
-                                        <li key={index}>
-                                            <strong>{comment.author}</strong>: {comment.text}
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div className="comments-section">
+                                    <ul className="comments-list">
+                                        {post.comments.map((comment, index) => (
+                                            <li key={index}>
+                                                <strong>{comment.author}</strong>: {comment.text}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <div className="add-comment">
+                                        <input
+                                            type="text"
+                                            value={commentTexts[post.id] || ''}
+                                            onChange={(e) => handleCommentChange(post.id, e.target.value)}
+                                            placeholder="Напишите комментарий..."
+                                            className="comment-input"
+                                        />
+                                        <button 
+                                            onClick={() => handleAddComment(post.id)}
+                                            className="comment-submit"
+                                        >
+                                            Отправить
+                                        </button>
+                                    </div>
+                                </div>
                             )}
                         </div>
                         <p className="postDate">{formatTimeAgo(post.createdAt)}</p>

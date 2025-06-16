@@ -22,19 +22,26 @@ export const handleLike = (postId, likedPosts, setLikedPosts, setPosts) => {
     }
 };
 
-export const handleAddComment = (postId, setPosts, getRandomItem) => {
-    const randomComment = {
-        author: getRandomItem(usernames),
-        text: getRandomItem(comments).text,
+export const handleAddComment = (postId, setPosts, currentUser, commentText) => {
+    if (!commentText || typeof commentText !== 'string' || !commentText.trim()) return;
+    
+    const newComment = {
+        author: currentUser || 'Аноним',
+        text: commentText.trim(),
+        timestamp: new Date().toISOString() 
     };
     
-    setPosts(prevPosts => prevPosts.map(post =>
-        post.id === postId 
-            ? { 
-                ...post, 
-                comments: [...post.comments, randomComment],
-                commentCount: post.commentCount + 1
-              } 
-            : post
-    ));
+    setPosts(prevPosts => 
+        prevPosts.map(post => {
+            if (post.id === postId) {
+                const updatedComments = [...post.comments, newComment];
+                return {
+                    ...post,
+                    comments: updatedComments,
+                    commentCount: updatedComments.length 
+                };
+            }
+            return post;
+        })
+    );
 };
