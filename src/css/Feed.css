@@ -81,6 +81,27 @@ html {
   margin-bottom: 8px;
 }
 
+.engagement-buttons button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transition 0.2s ease-in-out;
+}
+
+.engagement-buttons button:hover {
+  transform: scale(1.1);
+}
+
+.comments button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transition 0.2s ease-in-out;
+  margin-top: 10px;
+}
+
 .caption{
   margin-top: 0px;
 }
