@@ -19,7 +19,7 @@ html {
   border-bottom:4px solid #8B6B4D;
   border-radius: 5px;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .HeaderLogo{
@@ -169,12 +169,26 @@ html {
   overflow: hidden;
 }
 
+/* @media (min-height: 700px) {
+  .navIcons {
+    gap: 10px;
+  }
+}
+
+@media (min-height: 1000px) {
+  .navIcons {
+    gap: 275px;
+  }
+} */
+
 .navIcons {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   align-items: center;
   margin: 40px 0;
-  gap: 275px;
+  gap: 10px;
 }
 
 .navIcon {
@@ -184,6 +198,51 @@ html {
   cursor: pointer;
 }
 
+@media (max-width: 600px) {
+  .search-field {
+    max-width: 60%;
+  }
+}
+
+.search-field {
+  width: clamp(280px, 60%, 600px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.search-input {
+  border-color: transparent;
+  background: #8B6B4D;
+  width: 95%;
+  border:4px solid #8B6B4D;
+  border-radius: 8px;
+  padding-left: 20px;
+  transition: border-color 0.3s;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: black;
+  opacity: 0.8;
+}
+
+.search-icon {
+  position: absolute;
+  left: 5px;
+  top: 10%;
+  font-size: 20px;
+  pointer-events: none;
+}
 
 .postsFlex {
   display: flex;
@@ -260,6 +319,7 @@ html {
 .comment-input {
   background-color: #8B6B4D;
   border: 2px solid rgb(103, 77, 54);
+  outline: none;
 }
 
 .comment-input::placeholder {
@@ -268,7 +328,7 @@ html {
 }
 
 .caption{
-  margin-top: 0px;
+  margin-top: 5px;
 }
 
 .post-footer {
@@ -279,6 +339,23 @@ html {
 
 .postDate {
   order: -1;
+}
+
+.comment-item {
+  display: flex;
+  align-items: center;
+  justify-conten: space-between;
+  padding: 4px 0;
+}
+
+.comment-text {
+  flex-grown: 1;
+}
+
+.delete-comment-icon {
+  cursor: pointer;
+  margin-left: 10px;
+  fonnt-size: 1.1rem;
 }
 
 .delete-icon {

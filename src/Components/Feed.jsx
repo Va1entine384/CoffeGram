@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { formatDistanceToNow } from "date-fns";
@@ -13,8 +13,14 @@ import { MdEdit } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 
 import PostEditor from "./PostEditor";
-import { generatePosts as generatePostsHandler, loadMorePosts as loadMorePostsHandler, setupScrollListener } from "./postHandlers";
-import { handleLike as likeHandler, handleAddComment as addCommentHandler } from "./postInteractions";
+import { generatePosts as generatePostsHandler, 
+  loadMorePosts as loadMorePostsHandler, 
+  setupScrollListener } 
+  from "./postHandlers";
+import { handleLike as likeHandler, 
+  handleAddComment as addCommentHandler } 
+  from "./postInteractions";
+import SearchBar from "./SearchBar";
 
 import images from "../Data/images.json";
 
@@ -32,6 +38,8 @@ const Feed = () => {
 
   const [isEditing, setIsEditing] = useState(false);
   const [currentEditPost, setCurrentEditPost] = useState(null);
+
+  const[searchQuery, setSearchQuery] = useState("");
 
   const getRandomItem = (array) => array[Math.floor(Math.random() * array.length)];
   const generateImageUrl = useCallback(() => getRandomItem(images), []);
@@ -124,6 +132,27 @@ const Feed = () => {
     setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
   };
 
+  const handleDeleteComment = (postId, commentIndex) => {
+    setPosts(prevPosts =>
+      prevPosts.map(post => {
+        if(post.id === postId) {
+        const updatedComments = post.comments.filter((_, i) => i !== commentIndex);
+        return {
+          ...post,
+          comments: updatedComments,
+          commentCount: updatedComments.length
+          };
+        }
+        return post;
+      })
+    );
+  };
+
+  const filteredPosts = posts.filter(post =>
+    post.user.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.hashtags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
   return (
     <div className="feedContainer">
       <header className="header">
@@ -158,8 +187,10 @@ const Feed = () => {
         </div>
       </div>
 
+      <SearchBar onSearch={setSearchQuery} />
+
       <div className="postsFlex">
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
             <motion.div 
             key={post.id} 
             className="postCard"
@@ -178,8 +209,19 @@ const Feed = () => {
                 )}
             </div>
             
-            <img src={post.imageUrl} alt={post.caption} className="postImage" />
-            <p className="caption">
+            {post.imageUrl && (
+              <div className="media-preview">
+                {post.mediaType === 'video' ? (
+                  <video src={post.imageUrl} controls className="postImage" />
+                ) : (
+                  <img src={post.imageUrl} alt={post.caption} className="postImage" />
+                )}
+              </div>
+            )}
+
+
+            {/* <img src={post.imageUrl} alt={post.caption} className="postImage" /> */}
+            <div className="caption">
               <strong>{post.user}</strong>: {post.caption}
               {post.hashtags?.length > 0 && (
                 <div className="hashtags">
@@ -188,7 +230,7 @@ const Feed = () => {
                   ))}
                 </div>
               )}
-            </p>
+            </div>
             <div className="engagement-buttons">
               <button onClick={() => handleLike(post.id)}>
                 {likedPosts.includes(post.id) ? '🖤' : '❤️'} {post.likes}
@@ -206,8 +248,15 @@ const Feed = () => {
                 <div className="comments-section">
                   <ul className="comments-list">
                     {post.comments.map((comment, index) => (
-                      <li key={index}>
-                        <strong>{comment.author}</strong>: {comment.text}
+                      <li key={index} className="comment-item">
+                        <div className="comment-text">
+                          <strong>{comment.author}</strong>: {comment.text}
+                        </div>
+                        {comment.author === currentUser && (
+                          <MdDeleteForever onClick={() => handleDeleteComment(post.id, index)} 
+                            className="delete-comment-icon"
+                          />
+                        )}
                       </li>
                     ))}
                   </ul>

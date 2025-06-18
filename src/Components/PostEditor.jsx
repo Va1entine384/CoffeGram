@@ -9,11 +9,13 @@ const PostEditor = ({ onSave = () => {},
     const[caption, setCaption] = useState(initialPost?.caption || '');
     const[hashtags, setHashtags] = useState(initialPost?.hashtags?.join('') || '');
     const[previewUrl, setPreviewUrl] = useState(initialPost?.imageUrl || null);
+    const [mediaType, setMediaType] = useState(initialPost?.mediaType || null);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if(file) {
-            setPreviewUrl(URL.createObjectURL(file))
+            setPreviewUrl(URL.createObjectURL(file));
+            setMediaType(file.type.startsWith('video') ? 'video' : 'image');
         }
     };
 
@@ -26,6 +28,7 @@ const PostEditor = ({ onSave = () => {},
             caption,
             hashtags: hashtags.split(' ').filter(tag =>tag.startsWith('#')),
             imageUrl: previewUrl,
+            mediaType,
             createdAt: new Date().toISOString(),
             likes: initialPost?.likes || 0,
             comments: initialPost?.comments || [],
@@ -52,10 +55,11 @@ const PostEditor = ({ onSave = () => {},
                     </label>
                     {previewUrl && (
                         <div className="media-preview">
-                            {previewUrl.includes('image') ? (
-                                <img src={previewUrl} alt="preview"/>
-                            ) : (
-                                <video src={previewUrl} controls/>
+                            
+                            {mediaType === 'video' ? (
+                                <video src={previewUrl} controls />
+                            ) : ( 
+                                <img src={previewUrl} alt="preview" />
                             )}
                         </div>
                     )}

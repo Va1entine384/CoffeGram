@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { generateRandomComments } from "./postInteractions";
 import usernames from "../Data/usernames.json";
 import captions from "../Data/captions.json";
+import hashtags from "../Data/hashtags.json";
 
 export const generatePosts = (count, getRandomItem, generateImageUrl) => {
     const randomDate = () => {
@@ -9,6 +10,11 @@ export const generatePosts = (count, getRandomItem, generateImageUrl) => {
         date.setHours(date.getHours() - Math.floor(Math.random() * 72));
         return date;
     };
+
+    const generateHashtags = (count = 2) => {
+        const shuffled = hashtags.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    }
 
     return Array.from({ length: count }, () => {
         const commentCount = Math.floor(Math.random() * 6);
@@ -21,6 +27,7 @@ export const generatePosts = (count, getRandomItem, generateImageUrl) => {
             likes: Math.floor(Math.random() * 50) + 1,
             comments: generateRandomComments(getRandomItem, commentCount),
             commentCount: commentCount,
+            hashtags: generateHashtags(),
         };
     });
 };
