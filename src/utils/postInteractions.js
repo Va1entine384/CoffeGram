@@ -12,33 +12,33 @@ export const handleLike = (postId, likedPosts, setLikedPosts, setPosts) => {
     if (likedPosts.includes(postId)) {
         setLikedPosts((prev) => prev.filter(id => id !== postId));
         setPosts(prevPosts => prevPosts.map(post =>
-            post.id === postId ? { ...post, likes: post.likes - 1} : post
+            post.id === postId ? { ...post, likes: post.likes - 1 } : post
         ));
     } else {
         setLikedPosts([...likedPosts, postId]);
         setPosts(prevPosts => prevPosts.map(post =>
-            post.id === postId ? { ...post, likes: post.likes + 1} : post
+            post.id === postId ? { ...post, likes: post.likes + 1 } : post
         ));
     }
 };
 
 export const handleAddComment = (postId, setPosts, currentUser, commentText) => {
     if (!commentText || typeof commentText !== 'string' || !commentText.trim()) return;
-    
+
     const newComment = {
         author: currentUser || 'Аноним',
         text: commentText.trim(),
-        timestamp: new Date().toISOString() 
+        timestamp: new Date().toISOString()
     };
-    
-    setPosts(prevPosts => 
+
+    setPosts(prevPosts =>
         prevPosts.map(post => {
             if (post.id === postId) {
                 const updatedComments = [...post.comments, newComment];
                 return {
                     ...post,
                     comments: updatedComments,
-                    commentCount: updatedComments.length 
+                    commentCount: updatedComments.length
                 };
             }
             return post;

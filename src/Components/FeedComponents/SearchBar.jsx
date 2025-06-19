@@ -3,9 +3,9 @@ import { IoSearch } from "react-icons/io5";
 
 
 const SearchBar = ({ onSearch }) => {
-    const[searchQuery, setSearchQuery] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
 
-    const handleChange =(e) => {
+    const handleChange = (e) => {
         const query = e.target.value;
         setSearchQuery(query);
         onSearch?.(query);
@@ -15,8 +15,8 @@ const SearchBar = ({ onSearch }) => {
         <div className="search-field">
             <div className="search-wrapper">
                 <IoSearch className="search-icon" />
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     placeholder="Введите имя пользователя или хэштег"
                     value={searchQuery}
                     onChange={handleChange}
