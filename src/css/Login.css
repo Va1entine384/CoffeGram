@@ -1,24 +1,19 @@
 body {
-    background: radial-gradient(
-        circle at center,
-        #8B6B4D 0%,         
-        #8B6B4D 15%,        
-        #A38B6D 40%,        
-        #6F4E37 100%         
-    );
+    background-color: #A38B6D;
 }
 
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    weight: 100%;
     min-height: 100vh;
     background: radial-gradient(
         circle at center,
         #8B6B4D 0%,         
         #8B6B4D 15%,        
-        #A38B6D 40%,        
-        #6F4E37 100%        
+        rgb(148, 115, 92) 40%,        
+        #A38B6D 100%        
     );
     font-family: 'Roboto', sans-serif;
 }
