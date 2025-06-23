@@ -1,6 +1,7 @@
 .chat-container {
   display: flex;
   height: 100vh;
+  overflow: hidden;
   background-color: #d4a373;
   color: #3c2f2f;
 }
@@ -63,6 +64,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow: hidden;
   background-color: #f5ebe0;
 }
 
@@ -86,6 +89,7 @@
   flex: 1;
   weight: 30%;
   padding: 15px;
+  scroll-behavior: smooth;
   overflow-y: auto;
   background-color: rgb(217, 178, 135);
 }
