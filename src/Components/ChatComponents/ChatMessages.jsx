@@ -26,8 +26,9 @@ const ChatMessages = ({ messages, currentUser, onEdit, onDelete }) => {
           </div>
           {msg.sender === currentUser && (
             <div className="message-actions">
-              <MdEdit onClick={() => onEdit(msg)} title="Редактировать" />
+              <MdEdit className="edt-btn" onClick={() => onEdit(msg)} title="Редактировать" />
               <MdDeleteForever
+                className="dlt-btn"
                 onClick={() => onDelete(msg.id)}
                 title="Удалить"
               />

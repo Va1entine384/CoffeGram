@@ -1,5 +1,5 @@
 body {
-  background-color: #a38b6d;
+  background-color: var(--bg-general);
 }
 
 .login-container {
@@ -8,13 +8,7 @@ body {
   align-items: center;
   weight: 100%;
   min-height: 100vh;
-  background: radial-gradient(
-    circle at center,
-    #8b6b4d 0%,
-    #8b6b4d 15%,
-    rgb(148, 115, 92) 40%,
-    #a38b6d 100%
-  );
+  background: var(--login-bg-gradient);
   font-family: "Roboto", sans-serif;
 }
 
