@@ -1,0 +1,55 @@
+:root {
+  --bg-main: rgb(217, 178, 135);
+  --bg-sidebar: rgb(169, 131, 95);
+  --bg-general: #a38b6d;
+  --accent: #c68b59;
+  --avatar: #8b5a2b;
+  --side-style: #8B6B4D;
+  --text-main: #3c2f2f;
+  --text-light: #fff;
+  --highlight: #d4a373;
+  --scrollbar-track: #e6d5b8;
+  --scrollbar-thumb: #c68b59;
+}
+
+.theme-dark {
+  --bg-main: rgb(217, 178, 135);
+  --bg-sidebar: rgb(169, 131, 95);
+  --bg-general: #a38b6d;
+  --login-bg-gradient: radial-gradient(
+    circle at center,
+    #8b6b4d 0%,
+    #8b6b4d 15%,
+    rgb(148, 115, 92) 40%,
+    #a38b6d 100%
+  );
+  --accent: #c68b59;
+  --avatar: #8b5a2b;
+  --side-style: #8B6B4D;
+  --text-main: #3c2f2f;
+  --text-light: #fff;
+  --highlight: #d4a373;
+  --scrollbar-track: #e6d5b8;
+  --scrollbar-thumb: #c68b59;
+}
+
+.theme-light {
+  --bg-main:rgb(197, 156, 107);
+  --bg-sidebar:rgb(234, 208, 170);
+  --bg-general: rgb(234, 208, 170);
+  --login-bg-gradient: radial-gradient(
+    circle at center,
+    rgb(197, 156, 107) 0%,
+    rgb(197, 156, 107) 20%,
+    rgb(234, 208, 170) 60%,
+    rgb(234, 208, 170) 100%
+
+  );
+  --accent:rgb(241, 192, 132);
+  --side-style:rgb(205, 144, 87);
+  --text-main: #2b2b2b;
+  --text-light: #000;
+  --highlight:rgb(223, 166, 105);
+  --scrollbar-track: #e5e5e5;
+  --scrollbar-thumb: #b99772;
+}

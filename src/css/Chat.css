@@ -1,0 +1,237 @@
+.chat-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--highlight);
+  color: var(--text-main);
+}
+
+.chat-sidebar {
+  width: 250px;
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--highlight);
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.chat-sidebar h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--highlight);
+  font-weight: 1000;
+  padding-bottom: 8px;
+}
+
+.recipients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--accent);
+  color: var(--text-light);
+  border-radius: 10px;
+
+}
+
+.recipient-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.recipient-item:hover {
+  background-color: var(--highlight);
+}
+
+.recipient-item.active {
+  background-color: var(--highlight);
+  color: var(--text-light);
+}
+
+.recipient-avatar {
+  width: 30px;
+  height: 30px;
+  background-color: var(--avatar);
+  color: var(--bg-main);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-main);
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: var(--bg-sidebar);
+  color: var(--text-main);
+  border-bottom: 1px solid var(--highlight);
+  font-weight: 500;
+}
+
+.exit-chats {
+  margin-top: 22px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.chat-messages {
+  flex: 1;
+  weight: 30%;
+  padding: 15px;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  background-color: var(--bg-main);
+}
+
+.message {
+  margin-bottom: 15px;
+  max-width: 70%;
+}
+
+.message-content {
+  padding: 10px 15px;
+  border-radius: 18px;
+  display: inline-block;
+  font-size: 0.95em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.message.sent {
+  margin-left: auto;
+  text-align: right;
+}
+
+.message.sent .message-content {
+  background-color: var(--accent);
+  color: var(--text-light);
+  border-top-right-radius: 0;
+}
+
+.message.received {
+  margin-right: auto;
+  text-align: left;
+}
+
+.message.received .message-content {
+  background-color: var(--bg-sidebar);
+  color: var(--text-main);
+  border: 1px solid var(--highlight);
+  border-top-left-radius: 0;
+}
+
+.message-time {
+  font-size: 0.75em;
+  color: var(--accent);
+  margin-top: 5px;
+}
+
+.edt-btn {
+  cursor: pointer;
+}
+
+.dlt-btn {
+  cursor: pointer;
+}
+
+.chat-input {
+  display: flex;
+  padding: 15px;
+  background-color: var(--bg-sidebar);
+  border-top: 1px solid var(--highlight);
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 20px;
+  outline: none;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  border: 1px solid var(--highlight);
+}
+
+.chat-input input::placeholder {
+  color: var(--text-main);
+  opacity: 0.7;
+}
+
+.chat-input button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: var(--accent);
+  color: var(--text-light);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.chat-input button:hover {
+  background-color: var(--highlight);
+  color: var(--text-light);
+}
+
+.chat-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--text-main);
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.chat-sidebar::-webkit-scrollbar,
+.chat-messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-sidebar::-webkit-scrollbar-track,
+.chat-messages::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+.chat-sidebar::-webkit-scrollbar-thumb,
+.chat-messages::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+.recipient-item {
+  transition: transform 0.2s;
+}
+
+.recipient-item:hover {
+  transform: translateX(3px);
+}
+
+.message {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
